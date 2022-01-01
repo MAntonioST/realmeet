@@ -3,6 +3,7 @@ package br.com.sw2you.realmeet.controller;
 import br.com.sw2you.realmeet.domain.model.RoomDTO;
 import br.com.sw2you.realmeet.facade.RoomsApi;
 import br.com.sw2you.realmeet.service.RoomService;
+import br.com.sw2you.realmeet.util.ResponseEntityUtilis;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class RoomController implements RoomsApi{
 
     @Override
     public CompletableFuture<ResponseEntity<RoomDTO>> getRoom(Long id){
-        return supplyAsync(() -> roomService.getRoom(id), controllersExecutor).thenApply(r -> ResponseEntity.ok(r));
+        return supplyAsync(() -> roomService.getRoom(id), controllersExecutor).thenApply(ResponseEntityUtilis::ok);
     }
 
 }
